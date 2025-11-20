@@ -1,0 +1,36 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            DELETE THE BOOK
+        </title>
+    </head>
+
+    <body> -->
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+        <h1>
+            DELETE THE BOOK {{book.title}} 
+        </h1>
+
+        <h3>
+            ARE YOU SURE ABOUT DELETING THE BOOK?
+        </h3>
+        
+        <form method="post">
+
+            {% csrf_token %}
+
+          <input type="submit" class="btn btn-warning" value="confirm delete">
+
+        </form>
+
+
+{% endblock %} 
+
+    <!-- </body>
+</html> -->

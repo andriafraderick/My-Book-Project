@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<h3>{{ book.title }}</h3>
+<p><strong>Price:</strong> {{ book.price }}</p>
+
+<a class="btn btn-info" href="{% url 'user_book_list' %}">Back to books</a>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            UPDATE BOOK
+        </title>
+    </head>
+
+    <body> -->
+
+{% extends 'admin/index.html' %}
+{% load static %}
+{% block content %}
+
+        <h1>
+            UPDATE THE BOOK
+        </h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>
+                Book Name:
+            </label>
+            <input type="text" name="title" placeholder="Enter the Book Name" value="{{book.title}}">
+                <br><br>
+            <label>
+                Book Price:
+            </label>
+            <input type="text" name="price" placeholder="Enter the Book Price" value="{{book.price}}">
+
+                <br><br><br>
+            <input type="submit" class="btn btn-success" value="update">
+        </form>  
+
+<br> <br> <br> <br>
+
+
+        <h4>
+            LIST OF BOOKS
+        </h4>
+
+
+        {% for book in books %}
+
+            {{book.title}}
+            {{book.price}}
+
+        {% endfor %}
+
+
+{% endblock %}
+
+
+    <!-- </body>
+</html> -->

@@ -1,0 +1,36 @@
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            AUTHOR OF BOOK
+        </title>
+    </head>
+
+    <body> -->
+
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+        <h5>
+            AUTHOR OF BOOK
+        </h5>
+        
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" class="btn btn-success" value="save">
+
+        </form>
+
+
+{% endblock %}
+
+
+    <!-- </body>
+</html> -->

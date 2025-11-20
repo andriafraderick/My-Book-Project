@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">🛒 Your Cart</h2>
+
+    {% if cart_items %}
+        <div class="row">
+
+            {% for item in cart_items %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+
+                    {% if item.book.image %}
+                        <img src="{{ item.book.image.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+                    {% else %}
+                        <img src="{% static 'images/default.jpg' %}" class="card-img-top" style="height:200px; object-fit:cover;">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.book.title }}</h5>
+
+                        <p class="card-text">
+                            <strong>Author:</strong> {{ item.book.author }} <br>
+                            <strong>Price:</strong> ₹{{ item.book.price }} <br>
+                            <strong>Quantity:</strong> {{ item.quantity }}
+                        </p>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-outline-danger">−</a>
+
+                            <span class="px-3 py-2 border rounded">
+                                {{ item.quantity }}
+                            </span>
+
+                            <a href="{% url 'increase_quantity' item.id %}" class="btn btn-outline-success">+</a>
+                        </div>
+
+                        <a href="{% url 'remove_from_cart' item.id %}" 
+                           class="btn btn-danger w-100 mt-3">Remove</a>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- TOTAL CARD -->
+        <form action="{% url 'create_cheackout_session' %}" method="post">
+            {% csrf_token %}
+            <div class="card shadow-lg mt-4 p-4">
+            <h4 class="mb-2">🧾 Order Summary</h4>
+            <p class="mb-1"><strong>Total Items:</strong> {{ total_items }}</p>
+            <p class="mb-3"><strong>Total Price:</strong> ₹{{ total_price }}</p>
+
+            <!-- Checkout Button -->
+            <a href="#" class="btn btn-primary btn-lg w-100">
+                Proceed to Checkout
+            </a>
+        </div>
+        </form>
+
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Your cart is empty.
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

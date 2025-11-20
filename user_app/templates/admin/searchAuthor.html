@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<h5>
+    LIST OF AUTHORS
+</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Book Price</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% if books %}
+        {% for book in books %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ book.author }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.price }}</td>
+            <td>
+                <a href="{% url 'details' book.id %}" class="btn btn-primary">DETAILS</a>
+                <a href="{% url 'update' book.id %}" class="btn btn-success">UPDATE</a>
+                <a href="{% url 'delete' book.id %}" class="btn btn-danger">DELETE</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
